@@ -8,6 +8,7 @@ public class principal
         metodos m =  new metodos();
         Stack<Vehiculo> pila = m.LlenarPila();
         m.MostrarPila(pila);
+        m.Eliminar(pila);
         
     }
     

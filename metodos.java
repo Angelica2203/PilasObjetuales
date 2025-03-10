@@ -32,16 +32,18 @@ public class metodos
             System.out.println("\n");
         }
     }
-    public String Eliminar(Stack<Vehiculo>pila)
+    public Stack<Vehiculo> Eliminar(Stack<Vehiculo>pila)
     {
-        boolean eliminado = false;
+        String dato;
+        dato = JOptionPane.showInputDialog("Ingrese el que desea eliminar ");
         for (Vehiculo o : pila) 
         {
-            System.out.println("Marca: " + o.getMarca());
-            System.out.println("Color: " + o.getColor());
-            System.out.println("Precio: " + o.getPrecio());
-            System.out.println("\n");
+            if (o.getMarca().equalsIgnoreCase(dato)) 
+            {
+                pila.pop();
+            }
         }
+        return pila;
     }
     
 }
