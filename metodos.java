@@ -36,14 +36,16 @@ public class metodos
     {
         String dato;
         dato = JOptionPane.showInputDialog("Ingrese el que desea eliminar ");
-        for (Vehiculo o : pila) 
+        for (Vehiculo vehiculo : pila) 
         {
-            if (o.getMarca().equalsIgnoreCase(dato)) 
+            if (vehiculo.getMarca().equalsIgnoreCase(dato)) 
             {
-                pila.pop();
+                pila.remove(vehiculo);//Es de lista pero sirve para eliminar cualquier posicion
+                System.out.println("Registro eliminado");
             }
         }
         return pila;
     }
     
 }
+ 
