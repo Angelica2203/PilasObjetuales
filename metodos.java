@@ -1,51 +1,62 @@
 import java.util.Stack;
 import javax.swing.JOptionPane;
-public class metodos 
-{
-    public Stack<Vehiculo> LlenarPila()
-    {
+
+public class metodos {
+    public void LlenarPila() {
         Stack<Vehiculo> pila = new Stack<>();
         boolean continuar = true;
         String agregar = "";
-        while (continuar) 
-        {
-            Vehiculo o = new  Vehiculo();
-            o.setMarca(JOptionPane.showInputDialog("Ingrese la marca"));
-            o.setColor(JOptionPane.showInputDialog("Ingrese el color"));
+        while (continuar) {
+            Vehiculo o = new Vehiculo();
+            o.setMarca(JOptionPane.showInputDialog("Ingrese La marca"));
+            o.setColor(JOptionPane.showInputDialog("Ingrese La Color"));
             o.setPrecio(Double.parseDouble(JOptionPane.showInputDialog("Ingrese el precio")));
             pila.push(o);
-            agregar = JOptionPane.showInputDialog("Dese agragra mas registro S/N");
-            if (agregar.equalsIgnoreCase("N")) 
-            {
+            agregar = JOptionPane.showInputDialog("Desea agregar mas Registros S/N");
+            if (agregar.equalsIgnoreCase("N")) {
                 continuar = false;
             }
+
         }
-        return pila;
+        MostrarPila(pila);
+        int opt = Integer.parseInt(JOptionPane.showInputDialog("ingrese 1: consultar, 2: eliminar ,3 modificar "));
+        pila = AccionesRegistro(pila, opt);
+        MostrarPila(pila);
     }
-    public void MostrarPila(Stack<Vehiculo>pila)
-    {
-        for (Vehiculo o : pila) 
-        {
+
+    public void MostrarPila(Stack<Vehiculo> pila) {
+        for (Vehiculo o : pila) {
             System.out.println("Marca: " + o.getMarca());
             System.out.println("Color: " + o.getColor());
-            System.out.println("Precio: " + o.getPrecio());
-            System.out.println("\n");
+            System.out.println("Precio " + o.getPrecio());
+            System.out.println();
         }
     }
-    public Stack<Vehiculo> Eliminar(Stack<Vehiculo>pila)
-    {
-        String dato;
-        dato = JOptionPane.showInputDialog("Ingrese el que desea eliminar ");
-        for (Vehiculo vehiculo : pila) 
-        {
-            if (vehiculo.getMarca().equalsIgnoreCase(dato)) 
-            {
-                pila.remove(vehiculo);//Es de lista pero sirve para eliminar cualquier posicion
-                System.out.println("Registro eliminado");
+
+    public Stack<Vehiculo> AccionesRegistro(Stack<Vehiculo> pila, int opt) {
+        String dato = "";
+        if (opt == 1) {
+            dato = JOptionPane.showInputDialog("Ingrese el registro a consultar");
+        } else if (opt == 2) {
+            dato = JOptionPane.showInputDialog("Ingrese el registro al que desea eliminar");
+        } else {
+            dato = JOptionPane.showInputDialog("Ingrese el registro al que desea Modificar");
+        }
+        for (Vehiculo vehiculo : pila) {
+            if (vehiculo.getMarca().equalsIgnoreCase(dato)) {
+                if (opt == 1) {
+                    System.out.println(
+                            "el registro se encuentras y es: " + vehiculo.getMarca() + " " + vehiculo.getPrecio());
+                } else if (opt == 2) {
+                    pila.remove(vehiculo);
+                } else {
+                    vehiculo.setMarca(JOptionPane.showInputDialog("Ingrese La marca"));
+
+                }
             }
         }
+
         return pila;
+
     }
-    
 }
- 
